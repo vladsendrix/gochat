@@ -3,11 +3,11 @@ FROM golang:alpine AS build
 WORKDIR /app
 COPY . .
 
-RUN go build -o main .
+RUN go build -o gochat .
 
 FROM alpine
 
 WORKDIR /app
-COPY --from=build /app/main .
+COPY --from=build /app/gochat .
 
-CMD ["./main"]
+CMD ["./gochat"]
