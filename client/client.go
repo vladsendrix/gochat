@@ -39,7 +39,7 @@ func receiveMessages(conn net.Conn) {
 		msg, err := reader.ReadString('\n')
 		if err != nil {
 			fmt.Println("Connection closed by the server.")
-			break
+			os.Exit(0)
 		}
 		fmt.Print(msg)
 	}
