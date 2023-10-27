@@ -1,5 +1,6 @@
 import socket
 import threading
+import argparse
 
 
 def receive_messages(client_socket):
@@ -13,8 +14,15 @@ def receive_messages(client_socket):
 
 
 def main():
-    host = "localhost"
-    port = 6969
+    parser = argparse.ArgumentParser(description="GoChat Client")
+    parser.add_argument(
+        "-s", "--server", default="localhost", help="Server address")
+    parser.add_argument("-p", "--port", type=int,
+                        default=6969, help="Port number")
+    args = parser.parse_args()
+
+    host = args.server
+    port = args.port
 
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client_socket.connect((host, port))
