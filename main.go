@@ -7,5 +7,5 @@ import (
 
 func main() {
 	fmt.Println("Welcome to Gochat")
-	server.Start("localhost:6969")
+	server.Start("0.0.0.0:6969")
 }
