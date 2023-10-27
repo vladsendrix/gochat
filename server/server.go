@@ -66,19 +66,21 @@ func (s *ChatServer) HandleClient(conn net.Conn) {
 
 		if msg != "" {
 			fmt.Println("Received:", msg)
-			s.Broadcast(msg)
+			s.Broadcast(msg, conn)
 		}
 	}
 }
 
-func (s *ChatServer) Broadcast(msg string) {
+func (s *ChatServer) Broadcast(msg string, sender net.Conn) {
 	s.mutex.RLock()
 	defer s.mutex.RUnlock()
 
 	for conn := range s.clients {
-		_, err := conn.Write([]byte(msg + "\n"))
-		if err != nil {
-			delete(s.clients, conn)
+		if conn != sender {
+			_, err := conn.Write([]byte(msg + "\n"))
+			if err != nil {
+				delete(s.clients, conn)
+			}
 		}
 	}
 }
