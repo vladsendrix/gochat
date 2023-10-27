@@ -2,13 +2,19 @@ package main
 
 import (
 	"bufio"
+	"flag"
 	"fmt"
 	"net"
 	"os"
 )
 
 func main() {
-	conn, err := net.Dial("tcp", "localhost:6969")
+	serverPtr := flag.String("s", "localhost", "Server address")
+	portPtr := flag.String("p", "6969", "Port number")
+	flag.Parse()
+
+	serverAddress := *serverPtr + ":" + *portPtr
+	conn, err := net.Dial("tcp", serverAddress)
 	if err != nil {
 		fmt.Println("Error connecting to the server:", err)
 		return
