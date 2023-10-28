@@ -9,8 +9,9 @@ You can run the server using Docker or locally.
 ### Docker
 
 ```bash
-docker run -p 6969:6969 --name gochat gochat
+docker compose up
 ```
+To run the server in the background, use the `-d` or `--daemon` flag:
 
 ### Locally
 
