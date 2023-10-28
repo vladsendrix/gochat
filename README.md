@@ -32,6 +32,13 @@ go run client/client.go
 python3 client/client.py
 ```
 
+### Arguments
+
+```bash
+-s, --server    Server address (default: localhost)
+-p, --port      Server port (default: 6969)
+```
+
 ## Documentation
 
 ## ChatServer
